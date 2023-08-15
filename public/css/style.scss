@@ -1,0 +1,782 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+// variables here
+@import './etc/variables/variables.scss';
+
+// mixins here
+@import './etc/mixins/mixins.scss';
+
+html {
+    &::-webkit-scrollbar {
+        width: 12px;
+        background: $footer-bg-color;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: $primary-color;
+    }
+    button {
+        cursor: pointer;
+    }
+    scroll-behavior: smooth;
+}
+a {
+    text-decoration: none;
+}
+.primary-btn {
+    transition: .2s;
+    &:hover {
+        background: $white-color !important;
+        color: $primary-color !important;
+        font-weight: 900 !important;
+        border: 5px solid $primary-color !important;
+        transform: scale(1.05) !important;
+    }
+}
+.white-btn {
+    transition: .2s;
+    &:hover {
+        border: 5px solid $primary-color !important;
+        transform: scale(1.05) !important;
+        font-weight: 900 !important;
+    }
+}
+.wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+}
+.burgerMenu {
+    position: fixed;
+    height: calc(100vh - 106px);
+    width: 100%;
+    background: $primary-color;
+    bottom: 0;
+    left: -100%;
+    right: 0;
+    z-index: $z-index-3;
+    transition: .5s;
+    ul {
+        width: 100%;
+        height: 100%;
+        flex-direction: column;
+        @include flex-style(center, center);
+        gap: 20px;
+        list-style: none;
+        a {
+            text-align: center;
+            width: 100%;
+            background: $primary-color;
+            font-family: $roboto-font;
+            @include text-style(36px, 700, $white-color);
+            transition: .2s;
+            &:hover {
+                background: $white-color;
+                color: $black-color;
+            }
+        }
+    }
+}
+
+.container {
+    width: 1140px;
+    height: 100%;
+    padding: 0 15px;
+}
+.cart{
+    width: 1000px;
+    height: 700px;
+    background: $black-color;
+    box-shadow: 0 0 10px $black-color;
+    position: fixed;
+    top: 0px;
+    left: 50%;
+    margin-left: -500px;
+    z-index: 4;
+    padding: 20px;
+    display: none;
+    transition: .5s;
+    font-family: $roboto-font;
+    .leftPart{
+        height: 100%;
+        width: 70%;
+        flex-direction: column;
+        @include flex-style(space-around, flex-start);
+        h2{
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            @include text-style(36px, 700, $white-color);
+        }
+        .itemPlace{
+            width: 600px;
+            height: 500px;
+            overflow-y: scroll;
+            border: 10px solid #3c3c3c;
+            flex-direction: column;
+            @include flex-style(space-between, center);
+            transition: .2s;
+            &::-webkit-scrollbar {
+                width: 10px;
+            }
+            
+            &::-webkit-scrollbar-track {
+                background: $white-color;
+            }
+            
+            &::-webkit-scrollbar-thumb {
+                background: $black-color;
+            }
+            
+            &::-webkit-scrollbar-thumb:hover {
+                background: #888;
+            }
+            .item{
+                height: 200px !important;
+                width: 95%;
+                margin: 20px 0;
+                background: $primary-color;
+                @include flex-style(space-between, center);
+                cursor: pointer;
+                transition: .2s;
+                &:hover{
+                    transform: scale(1.02);
+                    box-shadow: 0 0 10px $primary-color;
+                }
+                .leftPart{
+                    @include flex-style(center, center);
+                    width: 200px;
+                    height: 200px;
+                    background: $primary-color;
+                    img{
+                        width: 180px;
+                        height: 180px;
+                        background: $white-color;
+                    }
+                }
+                .rightPart{
+                    flex-direction: column;
+                    @include flex-style(center, center);
+                    gap: 10px;
+                    width: calc(100% - 200px);
+                    height: 200px;
+                    background: $white-color;
+                    padding: 0 10px;
+                    .itemName{
+                        @include text-style(24px, 700, $black-color);
+                        text-align: center;
+                    }
+                    p{
+                        @include text-style(16px, 700, $black-color);
+                        text-align: center;
+                    }
+                    .itemPrice{
+                        @include text-style(24px, 900, green);
+                        text-align: center;
+                    }
+                    img{
+                        height: 30px;
+                        width: 30px;
+                    }
+                }
+            }
+        }
+    }
+    .rightPart{
+        height: 100%;
+        width: 30%;
+        background: #FFFFFF;
+        flex-direction: column;
+        z-index: 10;
+        @include flex-style(center, center);
+        gap: 50px;
+        h2{
+            @include text-style(22px, 700, $black-color);
+            span{
+                color: $primary-color;
+            }
+        }
+        input{
+            width: 200px;
+            height: 35px;
+            background: $black-color;
+            outline: none;
+            border: none;
+            padding-left: 10px;
+            @include text-style(14px, 700, $white-color);
+            transition: .2s;
+        }
+        button{
+            width: 70px;
+            height: 35px;
+            border: none;
+            outline: none;
+            background: $black-color;
+            @include text-style(14px, 700, $white-color);
+            cursor: pointer;
+        }
+        .back{
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            background: $black-color;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            @include text-style(36px, 900, $white-color);
+            @include flex-style(center, center);
+            cursor: pointer;
+        }
+    }
+}
+header {
+    height: 106px;
+    width: 100%;
+    position: fixed;
+    @include flex-style(center, center);
+    z-index: $z-index-2;
+    background: rgba(255, 255, 255, .5);
+    .container {
+        @include flex-style(space-between, center);
+    }
+    .logo {
+        height: 43px;
+        width: 44px;
+        background-image: url('../images/logo.svg');
+    }
+    ul {
+        gap: 40px;
+        list-style: none;
+        @include flex-style(center, center);
+        li {
+            font-family: $roboto-font;
+            @include text-style(16px, 400, $black-color);
+            cursor: pointer;
+            transition: .2s;
+            &:hover {
+                @include text-style(16px, 500, $primary-color);
+            }
+        }
+    }
+    button {
+        width: 115px;
+        height: 46px;
+        border-radius: 5px;
+        background: $primary-color;
+        color: $white-color;
+        border: none;
+        outline: none;
+    }
+    .burger {
+        width: 46px;
+        height: 46px;
+        background: $primary-color;
+        flex-direction: column;
+        @include flex-style(center, center);
+        display: none;
+        gap: 5px;
+        border-radius: 5px;
+        cursor: pointer;
+        .line {
+            width: 30px;
+            height: 4px;
+            background: $white-color;
+        }
+    }
+}
+.homePage {
+    height: 739px;
+    width: 100%;
+    @include flex-style(center, center);
+    .container {
+        @include flex-style(flex-start, center);
+        position: relative;
+    }
+    section {
+        width: 50%;
+        height: 100%;
+        gap: 45px;
+        flex-direction: column;
+        @include flex-style(center, flex-start);
+        z-index: $z-index-1;
+        h2 {
+            font-family: $philosopher-font;
+            @include text-style(48px, 700, $black-color);
+        }
+        p {
+            font-family: $roboto-font;
+            @include text-style(16px, 500, $black-color);
+        }
+        div{
+            gap: 30px;
+            @include flex-style(space-between, center);
+            button {
+                border-radius: 5px;
+                outline: none;
+                border: none;
+                &:nth-child(1) {
+                    width: 158px;
+                    height: 60px;
+                    background: $primary-color;
+                    font-family: $roboto-font;
+                    @include text-style(16px, 500, $white-color);
+                }
+                &:nth-child(2) {
+                    width: 158px;
+                    height: 60px;
+                    background: $white-color;
+                    font-family: $roboto-font;
+                    @include text-style(16px, 500, $primary-color);
+                    border: 1.5px solid $primary-color;
+                }
+            }
+        }
+    }
+    .rightImage {
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 611px;
+        height: 670px;
+        background-position: left center;
+        background-image: url('../images/home-page/rightImage.svg');
+        z-index: $z-index-0;
+    }
+}
+.features {
+    min-height: 333px;
+    width: 100%;
+    @include flex-style(center, center);
+    z-index: $z-index-1;
+    margin: 105px 0;
+    .container {
+        flex-direction: column;
+        @include flex-style(space-between, center);
+    }
+    h2 {
+        font-family: $philosopher-font;
+        @include text-style(31.25px, 700, $black-color);
+        text-align: center;
+        margin-bottom: 14px;
+        span {
+            font-family: $roboto-font;
+            @include text-style(16px, 500, $primary-color);
+            letter-spacing: 10px;
+            text-align: center;
+        }
+    }
+    .rows {
+        width: 100%;
+        flex-wrap: wrap;
+        @include flex-style(space-evenly, center);
+        section {
+            width: 300px;
+            height: 228px;
+            flex-direction: column;
+            @include flex-style(space-between, center);
+            .iconWrapper {
+                height: 88px;
+                width: 88px;
+                border-radius: 50%;
+                @include flex-style(center, center);
+            }
+            h2 {
+                font-family: $philosopher-font;
+                @include text-style(24px, 700, $black-color);
+                text-align: center;
+            }
+            p {
+                font-family: $roboto-font;
+                @include text-style(16px, 400, $black-color);
+                text-align: center;
+            }
+        }
+    }
+}
+.aboutUs {
+    min-height: 500px;
+    width: 100%;
+    position: relative;
+    @include flex-style(center, center);    
+    .container {
+        @include flex-style(space-between, center);
+        section {
+            flex-direction: column;
+            @include flex-style(space-between, flex-start);
+            width: 488px;
+            height: 315px;
+            p {
+                &:nth-child(1) {
+                    font-family: $roboto-font;
+                    @include text-style(16px, 500, $primary-color);
+                    line-height: 24px;
+                    letter-spacing: 10px;
+                }
+            }
+            .aboutUsP2 {
+                font-family: $roboto-font;
+                @include text-style(16px, 400, $black-color);
+                line-height: 24px;
+            }
+            h2 {
+                font-family: $philosopher-font;
+                @include text-style(31.25px, 700, $black-color);
+                line-height: 40px;
+            }
+            button {
+                width: 142px;
+                height: 42px;
+                border-radius: 5px;
+                background: $primary-color;
+                font-family: $roboto-font;
+                outline: none;
+                border: none;
+                @include text-style(16px, 500, $white-color);
+            }
+        }
+    }
+    .blot {
+        position: absolute;
+        left: 0;
+        z-index: -1;
+    }
+}
+.menu {
+    min-height: calc(1220px - 800px);
+    width: 100%;
+    @include flex-style(center, center);
+    margin-top: 105px;
+    .container {
+        flex-direction: column;
+        @include flex-style(space-between, center);
+    }
+    h6 {
+        font-family: $roboto-font;
+        letter-spacing: 10px;
+        line-height: 24px;
+        @include text-style(16px, 500, $primary-color);
+    }
+    h2 {
+        font-family: $philosopher-font;
+        line-height: 24px;
+        @include text-style(31.25px, 700, $black-color);
+        margin-top: 9px;
+    }
+    p {
+        font-family: $roboto-font;
+        line-height: 24px;
+        text-align: center;
+        max-width: 748px;
+        @include text-style(16px, 400, $black-color); 
+        margin-top: 20px;
+    }
+    .menuContainer {
+        min-height: 122px;
+        width: 100%;
+        flex-wrap: wrap;
+        margin-top: 60px;
+        @include flex-style(space-between, center);
+        .card {
+            height: 446px;
+            width: 360px;
+            border-radius: 10px;
+            border-top-left-radius: 20%;
+            overflow: hidden;
+            background: $white-color;
+            border: 1px solid rgba(0, 0, 0, .1);
+            box-shadow: 0 0 2px rgba(0, 0, 0, .1);
+            margin: 20px 0; 
+            .card-image {
+                height: 264px;
+                width: 100%;
+                border-bottom-right-radius: 20%;
+                background-image: url('../images/menu/cards/VegieMuffen.svg');  
+            }
+            .cardBottom {
+                height: 182px;
+                padding: 21px 25px 25px 25px;
+                flex-direction: column;
+                @include flex-style(space-between, flex-start);
+                h2 {
+                    font-family: $philosopher-font;
+                    width: 100%;
+                    line-height: 24px;
+                    @include text-style(25px, 700, $black-color);
+                    @include flex-style(space-between, center);
+                }
+                p {
+                    font-family: $roboto-font;
+                    line-height: 24px;
+                    text-align: left;
+                    @include text-style(16px, 400, $black-color);
+                }
+                div {
+                    width: 100%;
+                    @include flex-style(space-between, flex-start);
+                    button {
+                        font-family: $philosopher-font;
+                        height: 34px;
+                        width: 36px;
+                        background: $primary-color;
+                        outline: none;
+                        border: none;
+                        border-radius: 5px;
+                        @include text-style(24px, 100, $white-color);
+                    }
+                    .stars {
+                        width: auto;
+                        gap: 2px;
+                        img {
+                            width: 16px;
+                            height: 16px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    button {
+        width: 142px;
+        height: 42px;
+        background: $white-color;
+        border-radius: 5px;
+        box-shadow: 0 0 1px $primary-color;
+        border: none;
+        outline: none;
+        font-family: $roboto-font;
+        @include text-style(16px, 500, $primary-color); 
+    }
+}
+.appDownload {
+    height: 658px;
+    width: 100%;
+    margin-top: 120px;
+    position: relative;
+    @include flex-style(center, center);
+    .background {
+        position: absolute;
+        width: 100%;
+        height: 518px;
+        background: #FBF1E7;
+        left: 0;
+        right: 0;
+        top: 50%;
+        margin-top: calc(-518px/2);
+        z-index: -1;
+    }
+    .container {
+        padding: 100px 0;
+        @include flex-style(space-between, center);
+    }
+    section {
+        width: 555px;
+        height: 275px;
+        flex-direction: column;
+        @include flex-style(space-between, flex-start);
+        h6 {
+            font-family: $roboto-font;
+            line-height: 24px;
+            letter-spacing: 5px;
+            @include text-style(16px, 500, $primary-color); 
+        }
+        h2 {
+            font-family: $philosopher-font;
+            line-height: 40.6px;
+            @include text-style(31.25px, 700, $black-color); 
+        }
+        p {
+            font-family: $roboto-font;
+            line-height: 24px;
+            @include text-style(16px, 400, $black-color); 
+        }
+        div {
+            @include flex-style(flex-start, center);
+            gap: 30px;
+        }
+    }
+}
+.testimonial {
+    height: 736px;
+    width: 100%;
+    @include flex-style(center, center);
+    .container {
+        padding: 140px 0 120px 0;
+        flex-direction: column;
+        @include flex-style(space-between, center);
+    }
+    h6 {
+        font-family: $roboto-font;
+        letter-spacing: 5px;
+        line-height: 24px;
+        @include text-style(16px, 500, $primary-color); 
+    }
+    h2 {
+        font-family: $philosopher-font;
+        line-height: 24px;
+        @include text-style(31.25px, 700, #000000); 
+    }
+    p {
+        font-family: $roboto-font;
+        line-height: 24px;
+        @include text-style(16px, 400, #000000);
+        max-width: 750px;
+        text-align: center;
+    }
+    .row {
+        @include flex-style(space-between, center);
+        .leftPart, .rightPart {
+            width: 139px;
+        }
+        .leftPart {
+            @include flex-style(flex-start, center);
+        }
+        .rightPart {
+            @include flex-style(flex-end, center);
+        }
+        .centerPart {
+            width: 100%;
+            height: 314px;
+            flex-direction: column;
+            @include flex-style(space-between, center);
+            p {
+                font-family: $roboto-font;
+                line-height: 24px;
+                @include text-style(16px, 400, #000000);
+                text-align: center;
+            }
+            div {
+                @include flex-style(center, center);
+                gap: 2px;
+            }
+            h3 {
+                font-family: $roboto-font;
+                @include text-style(16px, 400, #000000);
+                text-align: center;
+                span {
+                    @include text-style(12px, 400, #000000);
+                }
+            }
+        }
+    }
+}
+.contact {
+    height: 448px;
+    width: 100%;
+    @include flex-style(center, center);
+    background: rgba(220, 120, 11, .1);
+    .container {
+        flex-direction: column;
+        @include flex-style(center, center);
+    }
+    h6 {
+        font-family: $roboto-font;
+        letter-spacing: 5px;
+        @include text-style(16px, 500, $primary-color);
+    }
+    h2 {
+        font-family: $philosopher-font;
+        line-height: 40.6px;
+        @include text-style(31.25px, 700, $black-color);
+        max-width: 749px;
+        text-align: center;
+    }
+    .input-wrapper {
+        width: 750px;
+        height: 75px;
+        border-radius: 10px;
+        overflow: hidden;
+        margin-top: 46px;
+        background: $white-color;
+        @include flex-style(space-between, center);
+        input, button {
+            height: 100%;
+            outline: none;
+            border: none;
+        }
+        input {
+            width: 594px;
+            background: $white-color;
+            padding: 32px;
+            font-family: $roboto-font;
+            line-height: 40.6px;
+            @include text-style(16px, 400, $black-color);  
+            &::placeholder {
+                font-family: $roboto-font;
+                line-height: 40.6px;
+                @include text-style(16px, 400, $black-color);
+                opacity: .6;           
+            }
+        }
+        button {
+            width: 156px;
+            background: $primary-color;
+            border-radius: 10px;
+            font-family: $roboto-font;
+            line-height: 40.6px;
+            @include text-style(18px, 500, $white-color);
+            cursor: pointer;
+        }
+    }
+}
+footer {
+    min-height: 429px;
+    width: 100%;
+    @include flex-style(center, center);
+    background: $footer-bg-color;
+    .container {
+        @include flex-style(space-between, center);
+        flex-wrap: wrap;
+    }
+    .hrLine{
+        width: 100%;
+        height: 2px;
+        background: $white-color;
+        opacity: .6;
+        display: none;
+    }
+    section {
+        flex-direction: column;
+        height: auto;
+        @include flex-style(space-between, flex-start);
+        ul {
+            list-style: none;
+            flex-direction: column;
+            @include flex-style(space-between, flex-start);
+            min-height: auto;
+            li {
+                font-family: $roboto-font;
+                @include text-style(14px, 400, $white-color);
+                opacity: .7;
+                margin: 10px 0;
+                &:nth-child(1) {
+                    font-family: $philosopher-font;
+                    @include text-style(18px, 700, $white-color);
+                    opacity: 1;
+                    margin-bottom: 6px;
+                }
+            }
+        }
+        &:nth-child(1) {
+            width: 262px;
+        }
+        &:nth-child(2), &:nth-child(3) {
+            width: 262px;
+        }
+        &:nth-child(4) {
+            width: 262px;
+            div{
+                @include flex-style(flex-start, center);
+                gap: 10px;
+                margin-top: 25px;
+                img {
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
+// media queries here
+@import './etc/media/mediaQueries.scss';

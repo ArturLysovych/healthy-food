@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="icon" type="image/png" href="./images/admin.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+<div class="wrapper">
+    <form class="logForm" id="log-admin-menu-form">
+        <input type="text" id="admin-menu-input" placeholder="password">
+        <button id="admin-menu-button">Log</button>
+    </form>
+    <div class="admin-panel" id="admin-panel">
+        <div class="leftPart">
+            <h2>Admin</h2>
+            <div class="pages">
+                <div class="products" id="btn-products-page">products list</div>
+                <div class="addProducts" id="btn-addProducts-page">add products</div>
+                <div class="profile" id="btn-profile-page">profile</div>
+                <a href="../index.html"><div>log out <i class="fa-solid fa-arrow-right-from-bracket"></i></div></a>
+            </div>
+        </div>  
+        <div class="rightPart">
+            <div class="topPart">
+                <div class="burger">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </div>
+                <p>Hi, Admin <img src="./images/hand.svg" alt=""> !</p>
+            </div>
+            <div class="productsList-page" id="productsList-page">
+                <div class="buttons">
+                    <button id="filterBtn">Filter</button>
+                    <div class="filterOptions">
+                        <div id="sortByDate" data-arr="products">Sort by date added</div>
+                        <div id="sortByName" data-arr="sortedByNameProducts">Sort A-Z</div>
+                        <div id="sortByPrice" data-arr="sortedByPriceProducts">Sort by price</div>
+                    </div>
+                    <button id="deleteBtn">Delete</button>
+                </div>
+                <div class="productContainer" id="productContainer">
+
+                </div>
+            </div>
+            <div class="addProducts-page" id="addProducts-page">
+                <form class="addForm" id="addProductForm">
+                    <h2>Add product</h2>
+                    <input type="text" id="name" name="name" placeholder="name" required="">
+                    <input type="number" id="price" name="price" placeholder="price" required="">
+                    <input type="file" id="image" name="image" placeholder="image" required="">
+                    <button type="submit">Додати</button>
+                </form>
+            </div>
+            <div class="profile-page" id="profile-page">
+                <section>
+                    <img src="./images/profile-user.png" height="140" width="140" alt="">
+                    <h2>Admin</h2>
+                </section>
+                <section>
+                    <h2>Change password</h2>
+                    <form class="changePassword-form" id="changePassword-form">
+                        <input type="text" placeholder="last password" id="lastPassword">
+                        <input type="text" placeholder="new password" id="newPassword">
+                        <button type="submit">Change</button>
+                    </form>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+    
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.js' integrity='sha512-RjvSEaeDqPCfUVQ9kna2/2OqHz/7F04IOl1/66LmQjB/lOeAzwq7LrbTzDbz5cJzlPNJ5qteNtHR56XaJSTNWw==' crossorigin='anonymous'></script>
+    <script src="./js/libs/code.jquery.com_jquery-3.7.0.min.js"></script>
+    <script src="./js/app.js"></script>
+</body>
+</html>

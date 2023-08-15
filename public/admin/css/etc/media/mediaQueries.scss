@@ -1,0 +1,102 @@
+@media screen and (max-width: 1300px) {
+    .productContainer {
+        width: 700px !important;
+    }
+}
+@media screen and (max-width: 1140px) {
+    .admin-panel {
+        .leftPart {
+            position: absolute;
+            z-index: 2;
+            width: 300px;
+            height: calc(100% - 80px);
+            bottom: 0;
+            left: -100%;
+            transition: 1s;
+        }
+        .rightPart {
+            width: 100%;
+            justify-content: center;
+            .topPart {
+                z-index: 3;
+                .burger {
+                    display: flex;
+                }
+            }
+        }
+    }
+    .productsList-page {
+        .buttons {
+            justify-content: center !important;
+        }
+        align-items: center !important;
+    }
+    .addProducts-page {
+        padding: 0 !important;
+    }
+    .profile-page {
+        section {
+            &:nth-child(2) {
+                padding: 0 !important;
+            }
+        }
+    }
+}
+@media screen and (max-width: 702px) {
+    .productContainer {
+        transform: scale(0.8);
+    }
+}
+@media screen and (max-width: 560px) {
+    .productContainer {
+        min-height: 500px !important;
+        width: 700px !important;
+        transform: scale(0.6);
+    }
+    .productsList-page {
+        gap: 0px !important;
+    }
+    .profile-page {
+        img {
+            transform: scale(0.8) !important;
+        }
+    }
+    .addProducts-page {
+        form {
+            transform: scale(0.8);
+            margin: 0 10px;
+        }
+    }
+}
+@media screen and (max-width: 422px) {
+    .admin-panel {
+        .leftPart {
+            width: 100%;
+            .pages {
+                div {
+                    text-align: center;
+                }
+            }
+        }
+    }
+    .productContainer {
+        width: 630px !important;
+        min-height: 700px;
+        transform: scale(0.5);
+        padding: 0 5px !important;
+    }
+    .profile-page {
+        section {
+            &:nth-child(1) {
+                justify-content: center !important;
+                gap: 10px !important;
+            }
+        }
+        img {
+            transform: scale(0.6) !important;
+        }
+        h2 {
+            transform: scale(0.6) !important;
+        }
+    }
+}

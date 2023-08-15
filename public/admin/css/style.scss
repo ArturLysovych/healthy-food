@@ -1,0 +1,362 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: $roboto-font;
+}
+
+// variables here
+@import './etc/variables/style.scss';
+
+// mixins here
+@import './etc/mixins/style.scss';
+
+a {
+    text-decoration: none;
+    color: auto;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.wrapper {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+form {
+    width: 450px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 15px;
+    background: $white-color;
+    padding: 20px;
+    text-align: center;
+    font-family: $roboto-font;
+    border: 3px solid $black-color;
+    input[type='text'], input[type='number'], input[type='password'] {
+        background: $white-color;
+        border: 3px solid $black-color;
+        outline: none;
+        height: 30px;
+        width: 200px;
+        padding-left: 10px;
+        color: $black-color;
+        margin: 5px 0;
+    }
+    button {
+        height: 40px;
+        padding: 0 20px;
+        background: $white-color;
+        color: $black-color;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        border: 3px solid $black-color;
+        &:hover {
+            transform: scale(1.05);
+        }
+    }
+}
+
+.logForm {
+    display: flex;
+    border-left: none;
+    border-right: none;
+    width: 100%;
+    button {
+        height: 30px;
+        width: 200px;
+    }
+}
+
+.addForm {
+    display: block;
+    h2 {
+        font-family: $roboto-font;
+        color: $black-color;
+    }
+}
+
+.admin-panel {
+    width: 100%;
+    height: 100vh;
+    min-height: 700px;
+    @include flex-style(space-between, center);
+    
+    display: none;
+    .leftPart {
+        width: 400px;
+        height: 100%;
+        background: $black-color;
+        flex-direction: column;
+        @include flex-style(flex-start, center);
+        gap: 40px;
+        padding-top: 80px;
+
+        h2 {
+            font-family: $philosopher-font;
+            @include text-style(36px, 400, $white-color);
+        }
+
+        .pages {
+            width: 100%;
+
+            div {
+                height: 50px;
+                width: 100%;
+                background: rgba(255, 255, 255, 0.1);
+                font-family: $roboto-font;
+                @include text-style(18px, 300, $white-color);
+                @include flex-style(flex-start, center);
+                padding-left: 20px;
+                position: relative;
+                transition: 0.3s;
+                cursor: pointer;
+
+                &::before {
+                    content: '';
+                    width: 0px;
+                    height: 100%;
+                    background: $white-color;
+                    opacity: 0.5;
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    bottom: 0;
+                }
+
+                &:hover {
+                    background: rgba(255, 255, 255, 0.2);
+
+                    &::before {
+                        width: 3px;
+                    }
+                }
+            }
+            a {
+                div {
+                    i {
+                        margin-left: 10px;
+                    }
+                }
+            }
+        }
+    }
+
+    .rightPart {
+        width: calc(100% - 400px);
+        height: 100%;
+
+        .topPart {
+            height: 80px;
+            width: 100%;
+            background: $black-color;
+            @include flex-style(flex-start, center);
+            padding-left: 20px;
+            .burger {
+                width: 40px;
+                height: 40px;
+                background: $white-color;
+                margin: 0 20px;
+                flex-direction: column;
+                @include flex-style(center, center);
+                display: none;
+                gap: 4px;
+                border-radius: 4px;
+                cursor: pointer;
+                .line {
+                    width: 80%;
+                    height: 3px;
+                    background: $black-color;
+                    border-radius: 3px;
+                }
+            }
+
+            p {
+                @include text-style(24px, 300, $white-color);
+                @include flex-style(center, center);
+            }
+        }
+
+        .productsList-page {
+            height: calc(100% - 80px);
+            width: 100%;
+            background: $white-color;
+            flex-direction: column;
+            @include flex-style(center, flex-start);
+            gap: 50px;
+            .buttons {
+                width: 100%;
+                @include flex-style(flex-start, center);
+                gap: 30px;
+                padding: 0 20px;
+                position: relative;
+                .filterOptions {
+                    position: absolute;
+                    background: $black-color;
+                    top: calc(100% + 10px);
+                    flex-direction: column;
+                    display: none;
+                    border-left: 3px solid $black-color;
+                    border-right: 3px solid $black-color;
+                    z-index: 3;
+                    div {
+                        width: 100%;
+                        cursor: pointer;
+                        background: $white-color;
+                        padding: 5px;
+                        font-family: $roboto-font;
+                        @include text-style(18px, 500, $black-color);
+                        margin: 3px 0;
+                        border: 1px solid $black-color;
+                        &:nth-child(1) {
+                            background: $primary-color;
+                        }
+                        &:hover {
+                            background: $primary-color;
+                        }
+                    }
+                }
+                button {
+                    padding: 5px 20px;
+                    background: $white-color;
+                    font-family: $roboto-font;
+                    border: none;
+                    outline: none;
+                    cursor: pointer;
+                    border: 3px solid $black-color;
+                    @include text-style(18px, 500, $black-color);
+                }
+            }
+            .productContainer {
+                width: 900px;
+                max-height: 400px;
+                padding: 8px 0;
+                overflow-y: scroll;
+                padding: 0 20px;
+                &::-webkit-scrollbar {
+                    width: 10px;
+                }
+                &::-webkit-scrollbar-thumb {
+                    background-color: $black-color;
+                }
+                &::-webkit-scrollbar-track {
+                    background-color: #DCDCDC;
+                }
+                .product {
+                    width: 100%;
+                    height: 100px;
+                    @include flex-style(space-between, center);
+                    border: 3px solid $black-color;
+                    margin: 15px 0;
+                    .checkbox-wrapper {
+                        width: 100px;
+                        height: 100%;
+                        @include flex-style(center, center);
+                        .checkbox {
+                            width: 35px;
+                            height: 35px;
+                            border: none;
+                            outline: 3px solid $black-color;
+                            cursor: pointer;
+                            @include flex-style(center, center);
+                            i {
+                                font-size: 32px;
+                                display: none;
+                            }
+                        }
+                    }
+                    .vrLine {
+                        width: 3px;
+                        height: 100%;
+                        background: $black-color;
+                    }
+                    h2 {
+                        width: 200px;
+                        font-family: $roboto-font;
+                        @include text-style(24px, 500, $black-color);
+                    }
+                    h3 {
+                        width: 40px;
+                        font-family: $roboto-font;
+                        @include flex-style(center, center);
+                        @include text-style(24px, 500, $black-color);
+                    }
+                    .stars {
+                        width: 250px;
+                        @include flex-style(center, center);
+                        gap: 3px;
+                    }
+                }
+            }
+        }
+        .addProducts-page {
+            height: calc(100% - 80px);
+            width: 100%;
+            @include flex-style(center, center);
+            padding: 0 100px 100px 0;
+            display: none;
+        }
+        .profile-page {
+            height: calc(100% - 80px);
+            width: 100%;
+            flex-direction: column;
+            display: none;
+            section {
+                padding: 0 20px;
+                &:nth-child(1) {
+                    width: 100%;
+                    height: 30%;
+                    @include flex-style(flex-start, center);
+                    position: relative;
+                    img {
+                        border-radius: 50%;
+                    }
+                    h2 {
+                        margin-left: 50px;
+                        font-family: $philosopher-font;
+                        @include text-style(48px, 700, $black-color);
+                    }
+                    &::before {
+                        content: '';
+                        width: 90%;
+                        height: 3px;
+                        background: $black-color;
+                        position: absolute;
+                        bottom: 0;
+                        left: 50%;
+                        margin-left: -45%;
+                    }
+                }
+                &:nth-child(2) {
+                    width: 100%;
+                    height: 70%;
+                    flex-direction: column;
+                    @include flex-style(center, center);
+                    padding: 0 100px 100px 0;
+                    h2 {
+                        font-family: $roboto-font;
+                        @include text-style(36px, 400, $black-color);
+                    }
+                    form {
+                        margin-top: 25px;
+                        width: 275px;
+                    }
+                }
+            }
+        }
+    }
+}
+@import '../css/etc/media/mediaQueries.scss';
